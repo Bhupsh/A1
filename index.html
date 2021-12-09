@@ -1,0 +1,73 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<title>test</title>
+<body>
+<form action="javascript:void(0);">
+<label>From date <label>
+<input type="date" id="from_date" value="2021-01-01" name="from_date">
+<label>To date <label>
+<input type="date" id="to_date" value="2022-12-01" name="to_date">
+<button  id="get_q" >Get Qerter</button>
+</form>
+</body>
+
+<script>
+$(document).ready(function () 
+{
+	$('#get_q').click(function(){
+	
+		var sDate 	= $('#from_date').val();
+		var sDate = new Date(sDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
+
+		var eDate 	= $('#to_date').val();
+		var eDate = new Date(eDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"))
+		 //Get the quarter of the current month
+
+
+		
+		var sYear = sDate.getFullYear();
+		var eYear = eDate.getFullYear();
+		var diffrance = eYear - sYear;
+		var quarterNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep', 'Oct','Nov','Dec'];
+		
+		var quarterList = [];
+		
+		for(sYear;sYear<=eYear;sYear++)
+		{
+			var sQuarter = Math.floor(sDate.getMonth()+1);
+			var eQuarter = Math.floor(eDate.getMonth()+1);
+			if(diffrance > 0 && sYear != eYear)
+			{
+				for(var a =1;a<=12;a++)
+				{
+					var valuess = (a/3);
+					if(valuess % 1 === 0)
+					{
+						var year = sYear.toString().substr(2);
+						console.log(quarterNames[a -1]+''+year);	 
+					} 
+				}
+			}
+			else
+			{
+				for(sQuarter;sQuarter<=eQuarter;sQuarter++)
+				{
+					var valuess = (sQuarter/3);
+					if(valuess % 1 === 0)
+					{
+						var year = sYear.toString().substr(2);
+						console.log(quarterNames[sQuarter -1]+''+year);	 
+					} 
+				}
+			}
+		}
+		
+		
+	
+	})
+});
+</script>
+
+</html>
